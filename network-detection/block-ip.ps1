@@ -1,1 +1,1 @@
-
+param();$raw=[Console]::In.ReadLine();if([string]::IsNullOrWhiteSpace($raw)){exit 1};$a=$raw|ConvertFrom-Json;$ip=$a.parameters.alert.data.win.eventdata.sourceAddress;if($ip -notmatch "^(25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])(\.(25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])){3}$"){exit 1};$name="Wazuh Auto Block - $ip";if(-not(Get-NetFirewallRule -DisplayName $name -ErrorAction SilentlyContinue)){New-NetFirewallRule -DisplayName $name -Direction Inbound -Action Block -RemoteAddress $ip -Profile Any -Protocol Any -Description "Automatic block created by Wazuh Active Response"}
