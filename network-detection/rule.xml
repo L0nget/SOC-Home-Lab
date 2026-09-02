@@ -1,1 +1,18 @@
+<group name="network_scanning">
 
+  <rule id="100050" level="3">
+    <if_sid>60104</if_sid>
+    <field name="win.system.eventID">^5152$</field>
+    <description>Windows Firewall dropped a packet</description>
+    <options>no_log</options>
+  </rule>
+
+  <rule id="100051" level="10" frequency="100" timeframe="10">
+    <if_matched_sid>100050</if_matched_sid>
+    <same_field>win.eventdata.sourceAddress</same_field>
+    <description>Potential network port scanning activity detected</description>
+    <group>recon,pci_dss_11.4</group>
+  </rule>
+  
+
+</group>
