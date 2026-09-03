@@ -1,4 +1,4 @@
-# Wazuh Auto-Block Network Scan
+# Wazuh Network Defense
 
 Проект для обнаружения сетевого сканирования и автоматической блокировки IP-адреса источника с помощью Wazuh и Windows Defender Firewall.
 
